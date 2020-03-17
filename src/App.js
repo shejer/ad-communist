@@ -5,6 +5,7 @@ import "./App.css";
 
 const InitialPotatoesState = {
   Names: [
+    "Potatoes",
     "Farmer",
     "Commune",
     "Freight",
@@ -14,31 +15,35 @@ const InitialPotatoesState = {
     "Barge",
     "Cold storage"
   ],
-  number: [1, 0, 0, 0, 0, 0, 0, 0],
-  prices: [1, 1, 1, 1, 1, 1, 1, 1],
-  production: [1, 2, 4, 8, 16, 32, 64, 128],
-  minimumToAccess: [0, 10, 25, 50, 100, 200, 400, 600]
+  number: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  prices: [0, 1, 1, 1, 1, 1, 1, 1, 1],
+  productGenTimes: [0, 100, 200, 400, 800, 1600, 3200, 6400, 12800],
+  production: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  minimumToAccess: [0, 0, 10, 25, 50, 100, 200, 400, 600]
 };
 
 const InitialLandState = {
   Names: [
-    "Farmer",
-    "Commune",
-    "Freight",
-    "Plantation",
-    "Irrigation",
-    "Greenhouse",
-    "Barge",
-    "Cold storage"
+    "Land",
+    "Worker",
+    "Clearcut",
+    "Road",
+    "Sewer",
+    "Coal Plant",
+    "Train",
+    "Harbour",
+    "Nuclear Plant"
   ],
-  number: [1, 0, 0, 0, 0, 0, 0, 0],
-  prices: [1, 1, 1, 1, 1, 1, 1, 1],
-  production: [1, 2, 4, 8, 16, 32, 64, 128],
-  minimumToAccess: [0, 10, 25, 50, 100, 200, 400, 600]
+  number: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  prices: [0, 1, 1, 1, 1, 1, 1, 1, 1],
+  productGenTimes: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  production: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  minimumToAccess: [0, 0, 10, 25, 50, 100, 200, 400, 600]
 };
 
 const InitialOreState = {
   Names: [
+    "Ore",
     "Farmer",
     "Commune",
     "Freight",
@@ -48,14 +53,16 @@ const InitialOreState = {
     "Barge",
     "Cold storage"
   ],
-  number: [1, 0, 0, 0, 0, 0, 0, 0],
-  prices: [1, 1, 1, 1, 1, 1, 1, 1],
-  production: [1, 2, 4, 8, 16, 32, 64, 128],
-  minimumToAccess: [0, 10, 25, 50, 100, 200, 400, 600]
+  number: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  prices: [0, 1, 1, 1, 1, 1, 1, 1, 1],
+  productGenTimes: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  production: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  minimumToAccess: [0, 0, 10, 25, 50, 100, 200, 400, 600]
 };
 
 const InitialMilitariesState = {
   Names: [
+    "Bullets",
     "Farmer",
     "Commune",
     "Freight",
@@ -65,14 +72,16 @@ const InitialMilitariesState = {
     "Barge",
     "Cold storage"
   ],
-  number: [1, 0, 0, 0, 0, 0, 0, 0],
-  prices: [1, 1, 1, 1, 1, 1, 1, 1],
-  production: [1, 2, 4, 8, 16, 32, 64, 128],
-  minimumToAccess: [0, 10, 25, 50, 100, 200, 400, 600]
+  number: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  prices: [0, 1, 1, 1, 1, 1, 1, 1, 1],
+  productGenTimes: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  production: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  minimumToAccess: [0, 0, 10, 25, 50, 100, 200, 400, 600]
 };
 
 const InitialPlacebosState = {
   Names: [
+    "Placebos",
     "Farmer",
     "Commune",
     "Freight",
@@ -82,10 +91,11 @@ const InitialPlacebosState = {
     "Barge",
     "Cold storage"
   ],
-  number: [1, 0, 0, 0, 0, 0, 0, 0],
-  prices: [1, 1, 1, 1, 1, 1, 1, 1],
-  production: [1, 2, 4, 8, 16, 32, 64, 128],
-  minimumToAccess: [0, 10, 25, 50, 100, 200, 400, 600]
+  number: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  prices: [0, 1, 1, 1, 1, 1, 1, 1, 1],
+  productGenTimes: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  production: [0, 1, 2, 4, 8, 16, 32, 64, 128],
+  minimumToAccess: [0, 0, 10, 25, 50, 100, 200, 400, 600]
 };
 
 function App() {
@@ -97,30 +107,28 @@ function App() {
   );
   const [PlacebosState, setPlacebosState] = useState(InitialPlacebosState);
 
-  const [activeColumn, setActiveColumn] = useState(
-    <Column name="Potatoes" state="PotatoesState" />
-  );
+  const [activeColumn, setActiveColumn] = useState("Potatoes");
 
   function chooseTab(e) {
     switch (e.target.getAttribute("number")) {
       case "1":
-        setActiveColumn(<Column name="Potatoes" state="PotatoesState" />);
+        setActiveColumn("Potatoes");
 
         break;
       case "2":
-        setActiveColumn(<Column name="Land" state="LandState" />);
+        setActiveColumn("Land");
 
         break;
       case "3":
-        setActiveColumn(<Column name="Ore" state="OreState" />);
+        setActiveColumn("Ore");
 
         break;
       case "4":
-        setActiveColumn(<Column name="Militaries" state="MilitariesState" />);
+        setActiveColumn("Militaries");
 
         break;
       case "5":
-        setActiveColumn(<Column name="Placebos" state="PlacebosState" />);
+        setActiveColumn("Placebos");
 
         break;
       default:
@@ -131,22 +139,51 @@ function App() {
     <div className="App">
       <div className="TabBar">
         <div onClick={chooseTab} number={1}>
-          Potatoes
+          {PotatoesState.number[0] + " Potatoes"}
         </div>
         <div onClick={chooseTab} number={2}>
-          Land
+          {LandState.number[0] + " Land"}
         </div>
         <div onClick={chooseTab} number={3}>
-          Ore
+          {OreState.number[0] + " Ore"}
         </div>
         <div onClick={chooseTab} number={4}>
-          Militaries
+          {MilitariesState.number[0] + " Militaries"}
         </div>
         <div onClick={chooseTab} number={5}>
-          Placebos
+          {PlacebosState.number[0] + " Placebos"}
         </div>
       </div>
-      {activeColumn}
+      {activeColumn === "Potatoes" && (
+        <Column
+          state={PotatoesState}
+          setState={setPotatoesState}
+          name="Potatoes"
+        />
+      )}
+      {activeColumn === "Land" && (
+        <Column state={LandState} setState={setLandState} name="Land" />
+      )}
+
+      {activeColumn === "Ore" && (
+        <Column state={OreState} setState={setOreState} name="Ore" />
+      )}
+
+      {activeColumn === "Militaries" && (
+        <Column
+          state={MilitariesState}
+          setState={setMilitariesState}
+          name="Militaries"
+        />
+      )}
+
+      {activeColumn === "Placebos" && (
+        <Column
+          state={PlacebosState}
+          setState={setPlacebosState}
+          name="Placebos"
+        />
+      )}
     </div>
   );
 }
